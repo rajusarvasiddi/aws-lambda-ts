@@ -28,22 +28,26 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Step 5: Package the code for deployment
+      # Step 5: Create the output directory
+      - name: Create output directory
+        run: mkdir -p dist
+
+      # Step 6: Package the code for deployment
       - name: Package Lambda
         run: zip -r dist/handler.zip dist/
 
-      # Step 6: Deploy to AWS Lambda
-      - name: Deploy to AWS Lambda
-        uses: aws-actions/aws-lambda-deploy@v1
-        with:
-          function-name: my-typescript-lambda
-          zip-file: dist/handler.zip
-          publish: true
-
-    # Step 7: Configure AWS credentials (add this step before deployment)
+      # Step 7: Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ca-central-1
+
+      # Step 8: Deploy to AWS Lambda
+      - name: Deploy to AWS Lambda
+        uses: aws-actions/aws-lambda-deploy@v1
+        with:
+          function-name: my-typescript-lambda
+          zip-file: dist/handler.zip
+          publish: true
