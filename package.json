@@ -2,9 +2,10 @@
   "name": "typescript-lambda",
   "version": "1.0.0",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
-    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js"
+    "package": "zip -r handler.zip dist/*"
   },
   "dependencies": {
     "aws-lambda": "^1.0.7",
