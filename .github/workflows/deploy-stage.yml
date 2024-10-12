@@ -46,6 +46,6 @@ jobs:
         with:
           command: >
             lambda update-function-code
-            --function-name my-typescript-lambda
+            --function-name aws-lambda-ts
             --zip-file fileb://dist/handler.zip
             --publish
