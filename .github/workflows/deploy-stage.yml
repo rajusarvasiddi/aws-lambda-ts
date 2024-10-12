@@ -3,7 +3,7 @@ name: Deploy Lambda
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -12,17 +12,17 @@ jobs:
     steps:
       # Step 1: Check out the code from the repository
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
 
       # Step 2: Set up Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: '18'
 
       # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # Step 4: Build the TypeScript code
       - name: Build project
@@ -42,10 +42,8 @@ jobs:
 
       # Step 7: Deploy to AWS Lambda
       - name: Deploy to AWS Lambda
-        uses: appleboy/lambda-action@v1
+        uses: rajusarvasiddi/aws-lambda-ts@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           function-name: my-typescript-lambda
           zip-file: dist/handler.zip
           publish: true
