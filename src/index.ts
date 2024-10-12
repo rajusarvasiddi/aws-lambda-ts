@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 // A simple route
-app.get('/', (req, res) => {
+app.get('api/ts', (req, res) => {
   res.json({ message: 'Hello from Lambda with Express!' });
 });
 
