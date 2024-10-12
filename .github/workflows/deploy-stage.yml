@@ -30,7 +30,10 @@ jobs:
 
       # Step 5: Package the code for deployment
       - name: Package Lambda
-        run: zip -r dist/handler.zip dist/*
+        run: |
+          cd dist
+          zip -r ../handler.zip index.js package.json node_modules
+          cd ..
 
       # Step 6: Configure AWS credentials
       - name: Configure AWS credentials
