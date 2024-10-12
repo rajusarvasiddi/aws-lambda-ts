@@ -19,16 +19,15 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Use npm ci for a clean install
 
       - name: Build project
         run: npm run build
 
       - name: Package Lambda
         run: |
-          cd dist
-          zip -r ../handler.zip index.js package.json node_modules
-          cd ..
+          mkdir -p dist
+          zip -r handler.zip dist/* node_modules package.json
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
