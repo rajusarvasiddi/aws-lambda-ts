@@ -28,10 +28,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Step 5: Create the output directory
-      - name: Create output directory
-        run: mkdir -p dist
-
       # Step 6: Package the code for deployment
       - name: Package Lambda
         run: zip -j dist/handler.zip dist/index.js
