@@ -1,25 +1,21 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import serverless from 'aws-serverless-express';
-import { APIGatewayProxyEvent, Context } from 'aws-lambda';
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Middleware
+// Middleware to parse JSON bodies
 app.use(express.json());
 
-// Routes
-app.get('/hello', (req: Request, res: Response) => {
-  res.json({ message: 'Hello, world!' });
+// A simple route
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello from Lambda with Express!' });
 });
 
-app.post('/echo', (req: Request, res: Response) => {
-  res.json({ body: req.body });
-});
-
-// Create the serverless Express instance
+// Create the server
 const server = serverless.createServer(app);
 
 // Lambda handler
-export const handler = (event: APIGatewayProxyEvent, context: Context) => {
+exports.handler = (event: any, context: any) => {
   return serverless.proxy(server, event, context);
 };
