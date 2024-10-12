@@ -45,4 +45,7 @@ jobs:
         uses: aws-actions/aws-cli-action@v2
         with:
           command: >
-          
+            lambda update-function-code
+            --function-name my-typescript-lambda
+            --zip-file fileb://dist/handler.zip
+            --publish
