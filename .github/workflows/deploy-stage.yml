@@ -1,9 +1,9 @@
-name: Deploy to Stage
+name: Deploy Lambda
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
@@ -32,7 +32,7 @@ jobs:
       - name: Package Lambda
         run: zip -r dist/handler.zip dist/
 
-      # Step 6: Configure AWS credentials
+      # Step 6: Configure AWS credentials (add this step before deployment)
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -42,10 +42,8 @@ jobs:
 
       # Step 7: Deploy to AWS Lambda
       - name: Deploy to AWS Lambda
-        uses: aws-actions/aws-cli-action@v2
+        uses: rajusarvasiddi/aws-lambda-ts@v1
         with:
-          command: >
-            lambda update-function-code
-            --function-name my-typescript-lambda
-            --zip-file fileb://dist/handler.zip
-            --publish
+          function-name: my-typescript-lambda
+          zip-file: dist/handler.zip
+          publish: true
