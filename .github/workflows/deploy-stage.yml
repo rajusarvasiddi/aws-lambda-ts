@@ -1,22 +1,22 @@
-name: Deploy Lambda
+name: Deploy to Stage
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Check out the code from the repository
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       # Step 2: Set up Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
@@ -32,7 +32,7 @@ jobs:
       - name: Package Lambda
         run: zip -r dist/handler.zip dist/
 
-      # Step 6: Configure AWS credentials (add this step before deployment)
+      # Step 6: Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -42,8 +42,9 @@ jobs:
 
       # Step 7: Deploy to AWS Lambda
       - name: Deploy to AWS Lambda
-        uses: rajusarvasiddi/aws-lambda-ts@v1
+        uses: aws-actions/aws-cli-action@v2
         with:
-          function-name: my-typescript-lambda
-          zip-file: dist/handler.zip
-          publish: true
+          command: >
+            lambda update-function-code
+            --function-name my-typescript-lambda
+        
