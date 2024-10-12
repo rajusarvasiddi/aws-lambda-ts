@@ -26,8 +26,9 @@ jobs:
 
       - name: Package Lambda
         run: |
-          mkdir -p dist
-          zip -r handler.zip dist/* node_modules package.json
+          cd dist
+          zip -r ../handler.zip *
+          cd ..
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
