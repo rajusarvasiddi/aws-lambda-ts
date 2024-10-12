@@ -5,7 +5,10 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "sourceMap": true
   },
   "include": ["src/**/*"]
 }
