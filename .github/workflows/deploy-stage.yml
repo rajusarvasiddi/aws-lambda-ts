@@ -42,7 +42,7 @@ jobs:
 
       # Step 7: Deploy to AWS Lambda
       - name: Deploy to AWS Lambda
-        uses: aws-actions/aws-lambda-ts@v1
+        uses: rajusarvasiddi/aws-lambda-ts@v1
         with:
           function-name: my-typescript-lambda
           zip-file: dist/handler.zip
