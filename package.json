@@ -1,24 +1,25 @@
 {
   "name": "lambda-express-api",
   "version": "1.0.0",
+  "description": "AWS Lambda function with Express and TypeScript",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "package": "zip -r handler.zip dist/*",
     "deploy": "npm run build && npm run package && aws lambda update-function-code --function-name my-typescript-lambda --zip-file fileb://handler.zip --publish"
   },
   "dependencies": {
-    "aws-lambda": "^1.0.0",                      
-    "aws-serverless-express": "^3.3.8",        
-    "express": "^4.17.1"                     
+    "aws-lambda": "^1.0.0",
+    "aws-serverless-express": "^3.3.8",
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "@types/aws-serverless-express": "^3.3.8", 
-    "@types/express": "^4.17.11",               
-    "@types/node": "^16.11.7",                  
-    "nodemon": "^2.0.7",                         
+    "@types/aws-serverless-express": "^3.3.8",
+    "@types/express": "^4.17.11",
+    "@types/node": "^16.11.7",
+    "nodemon": "^2.0.7",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   }
