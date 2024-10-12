@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code from the repository
+      # Step 1: Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -24,15 +24,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build the TypeScript code
+      # Step 4: Build the project
       - name: Build project
         run: npm run build
 
-      # Step 6: Package the code for deployment
+      # Step 5: Package the code for deployment
       - name: Package Lambda
-        run: zip -j dist/handler.zip dist/index.js
+        run: zip -r dist/handler.zip dist/*
 
-      # Step 7: Configure AWS credentials
+      # Step 6: Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -40,7 +40,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ca-central-1
 
-      # Step 8: Deploy to AWS Lambda using AWS CLI
+      # Step 7: Deploy to AWS Lambda using AWS CLI
       - name: Deploy to AWS Lambda
         run: |
           aws lambda update-function-code \
