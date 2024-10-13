@@ -1,21 +1,19 @@
 import express from 'express';
-import serverless from 'aws-serverless-express';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// A simple GET route
+// Example route
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from Lambda with Express!' });
+  res.json({ message: 'Hello from local Express server!' });
 });
 
-// Create the server
-const server = serverless.createServer(app);
+// Start server if running locally
+if (process.env.NODE_ENV !== 'lambda') {
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}
 
-// Lambda handler
-exports.handler = (event: any, context: any) => {
-  return serverless.proxy(server, event, context);
-};
+// Export the app for AWS Lambda
+export default app;
