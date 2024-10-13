@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 // Example route
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from local Express server!' });
+  res.json({ message: 'Hello from local Express server!s' });
 });
 
 // Start server if running locally
