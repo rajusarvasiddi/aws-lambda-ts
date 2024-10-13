@@ -2,7 +2,7 @@ import express from 'express';
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.disable('x-powered-by');
 // Example route
 app.get('/', (req, res) => {
   res.json({ message: 'test lambda raju sarvasiddi!' });
