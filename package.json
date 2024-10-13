@@ -11,12 +11,14 @@
     "deploy": "npm run build && npm run package"
   },
   "dependencies": {
-    "@types/aws-serverless-express": "^3.3.9",
-    "@types/express": "^5.0.0",
+    "aws-lambda-express": "^1.0.2",
     "aws-serverless-express": "^3.4.0",
     "express": "^4.21.1"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/aws-serverless-express": "^3.3.9",
+    "@types/express": "^5.0.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
