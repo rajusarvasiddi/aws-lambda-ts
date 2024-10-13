@@ -3,6 +3,4 @@ import app from './index';
 
 const server = serverlessExpress.createServer(app);
 
-export const handler = (event: any, context: any) => {
-  return serverlessExpress.proxy(server, event, context);
-};
+export const handler = app;
