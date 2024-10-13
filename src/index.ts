@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 
 // Example route
 app.get('/', (req, res) => {
-  res.json({ message: 'test lambda raju sarvasiddi!' });
+  res.json({ message: 'test lambda changed lambda file name .. raju sarvasiddi!' });
 });
 
 // Start server if running locally
