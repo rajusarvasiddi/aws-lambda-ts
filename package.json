@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist handler.zip",
+    "build": "npm run clean && tsc",
     "start": "ts-node src/index.ts",
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
     "package": "npm install --only=prod && zip -r handler.zip dist node_modules",
