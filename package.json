@@ -6,18 +6,18 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
-    "package": "zip -r handler.zip dist node_modules",
+    "package": "npm install --only=prod && zip -r handler.zip dist node_modules",
     "deploy": "npm run build && npm run package"
   },
   "dependencies": {
-    "aws-serverless-express": "^3.4.0",
-    "express": "^4.x.x"
-  },
-  "devDependencies": {
     "@types/aws-serverless-express": "^3.3.9",
     "@types/express": "^5.0.0",
+    "aws-serverless-express": "^3.4.0",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^4.0.0"
+    "typescript": "^5.6.3"
   }
 }
